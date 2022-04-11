@@ -938,9 +938,14 @@ class core_course_renderer extends plugin_renderer_base {
             $modicons .= $mod->afterediticons;
         }
 
+        // ALTA: Add back checkboxes
+        $modicons .= $this->course_section_cm_completion($course, $completioninfo, $mod, $displayoptions);
+
         if (!empty($modicons)) {
             $output .= html_writer::div($modicons, 'actions');
         }
+
+        /* ALTA: Hide new course completion logic
 
         // Fetch completion details.
         $showcompletionconditions = $course->showcompletionconditions == COMPLETION_SHOW_CONDITIONS;
@@ -960,6 +965,8 @@ class core_course_renderer extends plugin_renderer_base {
         if ($showcompletionconditions || $ismanualcompletion || $activitydates) {
             $output .= $this->output->activity_information($mod, $completiondetails, $activitydates);
         }
+
+        ALTA: End hide new course completion logic */
 
         // Show availability info (if module is not available).
         $output .= $this->course_section_cm_availability($mod, $displayoptions);
